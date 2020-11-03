@@ -21,6 +21,7 @@ STEP 0:
 STEP 1:
   Using the state hook, create a 'count', 'setCount' pair.
   The 'count' state should be initialized to the number zero.
+  //const [count,setCount]= useState(0);
 
 STEP 2:
   The 'style' object has the 'color' property hard-coded to "royalblue".
@@ -46,32 +47,45 @@ STEP 6:
   This click handler needs to use 'setCount' to set the 'count' to be zero again.
 */
 
-import React from 'react'; /* STEP 0 */
+import React, { useState } from 'react'; /* STEP 0 */
 
-export default function Counter() {
+export default function Counter(props) {
   /* STEP 1 */
+ 
+//  const{increment,decrement,reset,style} = props;
+ const [count,setCount]= useState(0);
+ 
+//  const style = if(count % {count}===0){
+//   let style = royalBlue;
+//               }else{
+//   let style = crimson;              
+//               }
+            
 
   const increment = () => {
     /* STEP 4 */
+    setCount(count+1);
   };
   const decrement = () => {
     /* STEP 5 */
+    setCount(count-1);
   };
   const reset = () => {
     /* STEP 6 */
+    setCount(0);
   };
 
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'royalblue', /* STEP 2 */
+    color: count % 2===0? 'royalblue':'crimson', /* STEP 2 */
   };
 
   return (
     <div className='widget-counter container'>
       <h2>Counter</h2>
       <div id='count' style={style}>
-        Number 0 is even {/* STEP 3 */}
+        Number {count} is  { count % 2 === 0 ?"even":"odd" }
       </div>
       <div>
         <button id='increment' onClick={increment}>Increment</button>
